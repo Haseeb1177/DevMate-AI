@@ -64,7 +64,7 @@ app.get(
     try {
       const { id } = req.params;
 
-      if (!/^[a-f\d]{24}$/i.test(id)) {
+    if (typeof id !== "string" || !/^[a-f\d]{24}$/i.test(id)) {
         res.status(400).json({
           error: "Invalid conversation ID.",
         });
