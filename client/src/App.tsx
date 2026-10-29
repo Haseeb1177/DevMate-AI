@@ -16,7 +16,11 @@ type Conversation = {
   createdAt?: string;
 };
 
-const API = "/api";
+const API =
+  import.meta.env.VITE_API_URL ||
+  (import.meta.env.DEV
+    ? "/api"
+    : "https://devmate-ai-vmux.onrender.com/api");
 
 async function request<T>(url: string, options?: RequestInit): Promise<T> {
   const response = await fetch(`${API}${url}`, {
