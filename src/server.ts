@@ -1,9 +1,17 @@
 import Conversation from "./models/Conversation";
 import connectDB from "./config/db";
 import "dotenv/config";
+import cors from "cors";
 import express, { Request, Response } from "express";
 
 const app = express();
+app.use(
+  cors({
+    origin: "https://dev-mate-ai-two.vercel.app",
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  }),
+);
 const PORT = Number(process.env.PORT) || 3000;
 const API_KEY = process.env.GEMINI_API_KEY;
 const MODEL = "gemini-3-flash-preview";
